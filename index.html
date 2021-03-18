@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>Horrario</title>
+
+
+<style>
+
+table,td{border:solid blue 3px; border-spacing:0.3px; margin:auto; transition: 3s;}
+th{border-collapse:collapse;}
+
+</style>
+
+
+</head> 
+<body align="center">
+<br><br><br><br>
+
+<table>
+
+<th>Horario</th>
+
+
+<tr>
+<td id="11">libre</td>
+<td id="21">ART</td>
+<td id="31">proyectos</td>
+<td id="41">mantenimiento</td>
+<td id="51">webII</td>
+</tr>
+
+<tr>
+<td id="12">español</td>
+<td id="22">ingles</td>
+<td id="32">libre</td>
+<td id="42">fisica/FHIR</td>
+<td id="52">matemáticas</td>
+
+</tr>
+
+<tr>
+<td id="13">libre</td>
+<td id="23">naturales</td>
+<td id="33">sociales</td>
+<td id="43">matemáticas</td>
+<td id="53">ingles</td>
+</tr>
+
+<tr>
+<td id="14">naturales</td>
+<td id="24">español</td>
+<td id="34">libre</td>
+<td id="44">sociales</td>
+<td id="54">libre</td>
+</tr>
+
+<tr>
+<td id="15">FCT</td>
+<td id="25">mantenimiento</td>
+<td id="35">libre</td>
+<td id="45">libre</td>
+<td id="55">emprendimiento</td>
+</tr>
+
+<tr>
+<td id="16">FCT</td>
+<td id="26">libre</td>
+<td id="36">sociales</td>
+<td id="46">WebII</td>
+<td id="56">libre</td>
+</tr>
+
+
+</table>
+<h1 title="dia, hora, minuto y segundos respectivamente" id="a">descanso</h1>
+
+<script>
+
+var d, h, m, s;
+
+setInterval(()=>{
+ time = new Date;
+ d = time.getDay();
+ h = time.getHours();
+ m = time.getMinutes();
+ s = time.getSeconds();
+},0)
+function ra(hor){document.getElementById("a").innerHTML = d+" "+h+" "+m+" "+s+"<br>"+ document.getElementById(hor).innerHTML; document.getElementById(hor).style.backgroundColor = "aqua"; document.getElementById(d+""+(kh()-1)).style.backgroundColor = "white";}
+function kh(){ if(h<=8 && m<=55){ return 1 } if(h==9 && m<=45){ return 2 } if(h==10 && m<45){ return 3 } if(h==11 && m<45){ return 4 } if(h==13 && m>30 || h==14 && m<10){ return 5 } if(h==14 && m>=15 || h>=15 && m<0){ return 6 } else{document.getElementById('a').innerHTML = h+' '+m+' descanso'}; document.getElementById(d+""+6).style.backgroundColor = "white";}
+
+function re(){ ra(d+""+kh()) }
+
+
+setInterval(re,10);
+
+Notification.requestPermission().then(function(result) {
+  console.log(result);
+});
+</script>
+
+</body>
+
+</html>
